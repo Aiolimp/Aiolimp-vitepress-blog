@@ -57,6 +57,6 @@ export default defineConfig({
     // 社交链接
     socialLinks: [{ icon: 'github', link: 'https://github.com/ChinaCarlos' }],
     // 部署的时候需要注意该参数避免样式丢失
-    base: '/vitepress-blog-template/',
+    base: '/Aiolimp-vitepress-blog/',
   },
 });
