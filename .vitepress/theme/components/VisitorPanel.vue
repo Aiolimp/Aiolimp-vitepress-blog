@@ -6,14 +6,7 @@
           本站总访问量
           <span id="busuanzi_value_site_pv" class="font-bold">--</span> 次
         </span>
-        <img
-          src="/heart.gif"
-          alt="heart"
-          class="heart-img"
-          width="50"
-          height="50"
-          @click="onLinkUmiHandle"
-        />
+        <img src="/heart.gif" alt="heart" class="heart-img" width="50" height="50" @click="onLinkUmiHandle" />
         <span class="text">
           本站访客数
           <span id="busuanzi_value_site_uv" class="font-bold">--</span> 人次
@@ -24,13 +17,10 @@
 </template>
 
 <script setup lang="ts">
-import { inBrowser } from "vitepress";
+import { inBrowser } from 'vitepress';
 const onLinkUmiHandle = () => {
   if (inBrowser) {
-    window.open(
-      "https://us.umami.is/share/Y2BYxCAm7R0DG2Xi/carlosme.fun",
-      "_blank"
-    );
+    window.open('https://us.umami.is/share/Y2BYxCAm7R0DG2Xi/aiolimp.space', '_blank');
   }
 };
 </script>

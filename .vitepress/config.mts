@@ -81,7 +81,7 @@ export default defineConfig({
       next: '下一页',
     },
     // 社交链接
-    socialLinks: [{ icon: 'github', link: 'https://github.com/ChinaCarlos' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/Aiolimp' }],
     // 主题
     darkModeSwitchLabel: '深浅模式',
 

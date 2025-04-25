@@ -7,8 +7,8 @@
       <div style="margin-top: 24px">
         <Giscus
           :key="page.filePath"
-          repo="ChinaCarlos/carlos-blog"
-          repo-id="R_kgDOMq5AVg"
+          repo="Aiolimp/Aiolimp-vitepress-blog"
+          repo-id="R_kgDOOe4J5A"
           category="Show and tell"
           category-id="DIC_kwDOMq5AVs4CiHAN"
           mapping="pathname"
@@ -26,11 +26,11 @@
 </template>
 
 <script lang="ts" setup>
-import Giscus from "@giscus/vue";
-import DefaultTheme from "vitepress/theme";
+import Giscus from '@giscus/vue';
+import DefaultTheme from 'vitepress/theme';
 import BackTop from './components/backTop.vue';
-import { watch } from "vue";
-import { inBrowser, useData } from "vitepress";
+import { watch } from 'vue';
+import { inBrowser, useData } from 'vitepress';
 
 const { isDark, page } = useData();
 
@@ -39,13 +39,11 @@ const { Layout } = DefaultTheme;
 watch(isDark, (dark) => {
   if (!inBrowser) return;
 
-  const iframe = document
-    .querySelector("giscus-widget")
-    ?.shadowRoot?.querySelector("iframe");
+  const iframe = document.querySelector('giscus-widget')?.shadowRoot?.querySelector('iframe');
 
   iframe?.contentWindow?.postMessage(
-    { giscus: { setConfig: { theme: dark ? "dark" : "light" } } },
-    "https://giscus.app"
+    { giscus: { setConfig: { theme: dark ? 'dark' : 'light' } } },
+    'https://giscus.app'
   );
 });
 </script>
