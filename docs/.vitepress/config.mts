@@ -16,7 +16,7 @@ const { detypeMarkdownPlugin, detypeVitePlugin } = createDetypePlugin();
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: '/',
-  srcDir: 'docs',
+  srcDir: './',
   title: "Aiolimp's Blog",
   description: "Aiolimp's Blog Web Site",
   ignoreDeadLinks: true,
@@ -64,7 +64,6 @@ export default defineConfig({
           { text: 'React框架', link: '/interview/React/index' },
           { text: '算法&数据结构', link: '/interview/Algorithm/dataStructure' },
           { text: 'PWA应用', link: '/interview/PWA/index' },
-          { text: '微前端', link: '/interview/MicroFrontEnd/index' },
         ],
       },
       { text: '关于我', link: '/pages/about' },
@@ -121,6 +120,6 @@ export default defineConfig({
     },
   },
   vite: {
-    plugins: [detypeVitePlugin(), groupIconVitePlugin(), viteDemoPreviewPlugin(), vueJsx()],
+    plugins: [detypeVitePlugin(), groupIconVitePlugin(), viteDemoPreviewPlugin(), vueJsx()] as any[],
   },
 });
