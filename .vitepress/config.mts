@@ -99,6 +99,7 @@ export default defineConfig({
       message: 'Released under the MIT License.',
       copyright: 'Copyright © 2023-present Aiolimp',
     },
+    base: '/',
   },
   markdown: {
     image: {
