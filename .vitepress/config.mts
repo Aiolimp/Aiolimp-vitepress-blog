@@ -99,7 +99,6 @@ export default defineConfig({
       message: 'Released under the MIT License.',
       copyright: 'Copyright © 2023-present Aiolimp',
     },
-    base: '/',
   },
   markdown: {
     image: {
@@ -123,4 +122,5 @@ export default defineConfig({
   vite: {
     plugins: [detypeVitePlugin(), groupIconVitePlugin(), viteDemoPreviewPlugin(), vueJsx()],
   },
+  base: '/',
 });
