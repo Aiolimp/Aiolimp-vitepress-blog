@@ -46,9 +46,13 @@ export default defineConfig({
       { text: '首页', link: '/' },
       { text: '我的博客', link: '/blog/vitepress' },
       {
+        text: '知识库',
+        items: [{ text: 'React框架', link: '/knowledge/React/ReactHooks' }],
+      },
+      {
         text: '前端面试',
         items: [
-          { text: '我的掘金', link: 'https://juejin.cn/user/3544481218693597' },
+          // { text: '我的掘金', link: 'https://juejin.cn/user/3544481218693597' },
           { text: 'HTML', link: '/interview/HTML/index' },
           { text: 'CSS', link: '/interview/CSS/prev' },
           { text: 'JavaScript', link: '/interview/JavaScript/prev' },
