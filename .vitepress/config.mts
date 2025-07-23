@@ -15,6 +15,7 @@ const { detypeMarkdownPlugin, detypeVitePlugin } = createDetypePlugin();
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: '/',
   srcDir: 'docs',
   title: "Aiolimp's Blog",
   description: "Aiolimp's Blog Web Site",
@@ -122,5 +123,4 @@ export default defineConfig({
   vite: {
     plugins: [detypeVitePlugin(), groupIconVitePlugin(), viteDemoPreviewPlugin(), vueJsx()],
   },
-  base: '/',
 });
