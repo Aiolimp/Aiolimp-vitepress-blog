@@ -170,9 +170,9 @@ class HashTable {
 }
 
 const hashTable = new HashTable();
-hashTable.set("name", "Alice");
-console.log(hashTable.get("name")); // 输出 "Alice"
-hashTable.delete("name");
+hashTable.set('name', 'Alice');
+console.log(hashTable.get('name')); // 输出 "Alice"
+hashTable.delete('name');
 ```
 
 ### 1.6 树（Tree）
@@ -249,10 +249,7 @@ class MinHeap {
     while (index > 0) {
       const parentIndex = Math.floor((index - 1) / 2);
       if (this.heap[index] >= this.heap[parentIndex]) break;
-      [this.heap[index], this.heap[parentIndex]] = [
-        this.heap[parentIndex],
-        this.heap[index],
-      ];
+      [this.heap[index], this.heap[parentIndex]] = [this.heap[parentIndex], this.heap[index]];
       index = parentIndex;
     }
   }
@@ -268,7 +265,7 @@ console.log(minHeap.heap); // 输出 [1, 3, 2]
 ### 1.8 图（Graph）
 
 - 由顶点和边构成，分为有向图和无向图。
-- 常用于描述网络结构，如社交网络、地图导航等。常见的图算法有深度优先搜索、广度优先搜索、最短路径算法等。
+- 常用于描述网络结构，如社交网络、地图导航等。常见的图算法有深度优先搜索、广度优先搜索、最短路径算法等
 
 #### 示例代码：
 
@@ -321,7 +318,7 @@ class Trie {
 }
 
 const trie = new Trie();
-trie.insert("apple");
+trie.insert('apple');
 ```
 
 - 一种树形结构，主要用于字符串存储与查找。
