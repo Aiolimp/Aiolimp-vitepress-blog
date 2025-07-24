@@ -3,13 +3,11 @@ title: React Router V7 基本使用
 theme: solarized-dark
 ---
 
-# 基本使用
-
-## React-Router V7
+# React-Router V7
 
 官方文档:<https://reactrouter.com/home>
 
-## 安装
+## 一、安装
 
 react-router 在最新版本`V7`中，设计了三种模式
 
@@ -75,7 +73,7 @@ ReactDOM.createRoot(root).render(
 >
 > 如果做一个小项目可以使用`声明模式`，如果要做企业级项目可以使用`数据模式`。
 
-### 基本使用
+### 1.基本使用
 
 - src/router/index.ts
 
@@ -121,7 +119,7 @@ const App: React.FC = () => {
 export default App;
 ```
 
-### 路由跳转
+### 2.路由跳转
 
 在`Home`组件中使用`NavLink`组件跳转到`About`组件。
 
@@ -153,11 +151,11 @@ const About: React.FC = () => {
 export default About;
 ```
 
-# 路由模式
+## 二、路由模式
 
 在 React RouterV7 中，是拥有不同的路由模式，路由模式的选择将直接影响你的整个项目。React Router 提供了四种核心路由创建函数： `createBrowserRouter`、`createHashRouter`、`createMemoryRouter` 和 `createStaticRouter`
 
-## createBrowserRouter(推荐)
+## 1.createBrowserRouter(推荐)
 
 ### 核心特点
 
@@ -171,7 +169,7 @@ export default About;
 - 需要服务器端支持
 - 需要 URL 美观
 
-## createHashRouter
+## 2.createHashRouter
 
 ### 核心特点
 
@@ -184,7 +182,7 @@ export default About;
 - 静态站点托管例如(github pages, netlify, vercel)
 - 不需要服务器端支持
 
-## createMemoryRouter
+## 3.createMemoryRouter
 
 ### 核心特点
 
@@ -197,7 +195,7 @@ export default About;
 - 非浏览器环境例如(React Native, Electron)
 - 单元测试或者组件测试(Jest, Vitest)
 
-## createStaticRouter
+## 4.createStaticRouter
 
 ### 核心特点
 
@@ -210,7 +208,7 @@ export default About;
 - 服务端渲染应用（如 Next.js 的兼容方案）
 - 需要 SEO 优化的页面
 
-## 解决刷新 404 问题
+## 5.解决刷新 404 问题
 
 当使用`createBrowserRouter`时，如果刷新页面会丢失状态，这是因为浏览器默认会去请求服务器上的资源，如果服务器上没有资源，就会返回 404。 要解决这个问题就需要在服务器配置一个回退路由，当请求的资源不存在时，返回`index.html`。
 
@@ -279,11 +277,11 @@ http
   });
 ```
 
-# 路由
+## 三、路由
 
 React-Router V7 的路由种类是非常多的，有`嵌套路由` `布局路由` `索引路由` `前缀路由` `动态路由`，大致上是分为这五种
 
-## Layout
+### 1.Layout
 
 我们在演示上面几种路由之前，先对界面进行一个布局，方便我们后续的演示,UI 组件我们使用`antd`。
 
@@ -381,7 +379,7 @@ export default function Layout() {
 }
 ```
 
-## 嵌套路由
+### 2.嵌套路由
 
 嵌套路由就是父路由中嵌套子路由`children`，子路由可以继承父路由的布局，也可以有自己的布局。
 
@@ -416,7 +414,7 @@ function Content() {
 }
 ```
 
-## 布局路由
+### 3.布局路由
 
 布局路由是一种特殊的嵌套路由，父路由可以省略 `path`，这样不会向 URL 添加额外的路径段：
 
@@ -439,7 +437,7 @@ const router = createBrowserRouter([
 ]);
 ```
 
-## 索引路由
+### 4.索引路由
 
 索引路由使用 `index: true` 来定义，作为父路由的默认子路由：
 
@@ -469,7 +467,7 @@ const router = createBrowserRouter([
 ]);
 ```
 
-## 前缀路由
+### 5.前缀路由
 
 前缀路由只设置 `path` 而不设置 `Component`，用于给一组路由添加统一的路径前缀：
 
@@ -492,7 +490,7 @@ const router = createBrowserRouter([
 ]);
 ```
 
-## 动态路由
+### 6.动态路由
 
 动态路由通过 `:参数名` 语法来定义动态段：
 
@@ -525,11 +523,11 @@ function Card() {
 }
 ```
 
-# 参数传递
+## 四、参数传递
 
 React-router 一共有三种方式进行参数传递，参数传递指的是在路由跳转时，将参数传递给目标路由。
 
-## Query 方式
+### 1.Query 方式
 
 Query 的方式就是使用 ? 来传递参数，例如：
 
@@ -564,7 +562,7 @@ const { search } = useLocation();
 console.log(search); //获取search参数 ?id=123
 ```
 
-## Params 方式
+### 2.Params 方式
 
 Params 的方式就是使用 :\[name] 来传递参数，例如：
 
@@ -592,7 +590,7 @@ const { id } = useParams();
 console.log(id); //获取id参数
 ```
 
-## State 方式
+### 3.State 方式
 
 state 在 URL 中不显示，但是可以传递参数，例如：
 
@@ -622,7 +620,7 @@ console.log(state.name); //获取name参数
 console.log(state.age); //获取age参数
 ```
 
-## useLocation 和 useSearchParams 区别
+## 4.useLocation 和 useSearchParams 区别
 
 ### useLocation
 
@@ -680,7 +678,7 @@ function MyComponent() {
 }
 ```
 
-## 总结
+## 5.总结
 
 React Router 提供了三种参数传递方式，各有特点：
 
@@ -704,13 +702,13 @@ React Router 提供了三种参数传递方式，各有特点：
 
 选择建议：必要参数用 Params，筛选条件用 Query，临时数据用 State。
 
-# 懒加载
+## 五、懒加载
 
-## 什么是懒加载
+### 1.什么是懒加载
 
 懒加载是一种优化技术，用于延迟加载组件，直到需要时才加载。这样可以减少初始加载时间，提高页面性能。
 
-### 懒加载的实现
+### 2.懒加载的实现
 
 通过在路由对象中使用 `lazy` 属性来实现懒加载。
 
@@ -745,11 +743,11 @@ const router = createBrowserRouter([
 
 > 如果配置了 `loader` 则每次都会进入`loading`状态，如果没有配置 `loader` 则只执行一次。
 
-## 体验优化
+### 3.体验优化
 
 例如 `about` 是一个懒加载的组件，在切换到 `about` 路由时，展示的还是上一个路由的组件，直到懒加载的组件加载完成，才会展示新的组件，这样用户会感觉页面卡顿，用户体验不好。
 
-### 使用状态优化 useNavigation
+#### 使用状态优化 useNavigation
 
 - src/layout/Content/index.tsx
 
@@ -780,7 +778,7 @@ export default function Content() {
 }
 ```
 
-## 性能优化
+### 5.性能优化
 
 使用懒加载打包后，会把懒加载的组件打包成一个独立的文件，从而减小主包的大小。
 

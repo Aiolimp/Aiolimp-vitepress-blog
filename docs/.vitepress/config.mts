@@ -48,7 +48,7 @@ export default defineConfig({
       { text: '我的博客', link: '/blog/vitepress' },
       {
         text: '知识库',
-        items: [{ text: 'React框架', link: '/knowledge/React/ReactHooks' }],
+        items: [{ text: 'React框架', link: '/knowledge/React/ReactHooks1' }],
       },
       {
         text: '前端面试',

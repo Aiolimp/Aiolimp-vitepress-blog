@@ -1,17 +1,17 @@
 ---
-title: React常见Hooks使用
+title: React Hooks(数据驱动)
 theme: solarized-dark
 ---
 
 # 数据驱动
 
-## useState
+## 一、useState
 
 `useState` 是一个 React Hook，允许函数组件在内部管理状态。
 
 组件通常需要根据交互更改屏幕上显示的内容，例如点击某个按钮更改值，或者输入文本框中的内容，这些值被称为状态值也就是(state)
 
-### **使用方法**
+### 1. **使用方法**
 
 `useState` 接收一个参数，即状态的初始值，然后返回一个数组，其中包含两个元素：
 
@@ -22,13 +22,13 @@ theme: solarized-dark
 const [state, setState] = useState(initialState); // state 是状态变量，useState 是修改器
 ```
 
-### **注意事项**
+### 2. **注意事项**
 
 `useState` 是一个 Hook，因此你只能在 `组件的顶层` 或自己的 `Hook` 中调用它。你不能在循环或条件语句中调用它。
 
 在严格模式中，React 将 `两次调用初始化函数`，以 帮你找到意外的不纯性。这只是开发时的行为，不影响生产
 
-### **用法**
+### 3. **用法**
 
 #### **基本数据类型**
 
@@ -133,7 +133,7 @@ function TodoList() {
 
 React 在开发模式下可能会调用你的 [初始化函数](https://react.docschina.org/reference/react/useState#my-initializer-or-updater-function-runs-twice) 两次，以验证它们是否是 [纯函数](https://react.docschina.org/learn/keeping-components-pure)。
 
-### 更新机制
+### 4. 更新机制
 
 #### **异步机制**
 
@@ -203,11 +203,11 @@ export default App;
 
 现在没有其他排队的更新，因此 React 最终将存储 3 作为当前状态。
 
-## useReducer
+## 二、useReducer
 
 `useReducer` 是一个 React Hook，它允许你向组件里面添加一个 [reducer](https://react.docschina.org/learn/extracting-state-logic-into-a-reducer)。
 
-### 使用方法
+### 1. 使用方法
 
 ```tsx
 const [state, dispatch] = useReducer(reducer, initialArg, init?)
@@ -242,7 +242,7 @@ function MyComponent() {
   // ...
 ```
 
-### 计数器案例
+### 2. 计数器案例
 
 初始状态 (initialState):
 
@@ -307,18 +307,18 @@ export default App;
 - 当点击 "-" 按钮时，调用 dispatch({ type: 'decrement' })，使 count 减少。
 - 当点击 "+" 按钮时，调用 dispatch({ type: 'increment' })，使 count 增加。
 
-## useSyncExternalStore
+## 三、useSyncExternalStore
 
 useSyncExternalStore 是 React 18 引入的一个 Hook，用于从外部存储（例如状态管理库、浏览器 API 等）获取状态并在组件中同步显示。这对于需要跟踪外部状态的应用非常有用。
 
-### 场景
+### 1. 场景
 
 1.  订阅外部 store 例如(redux,Zustand`德语`)
 2.  订阅浏览器 API 例如(online,storage,location)等
 3.  抽离逻辑，编写自定义 hooks
 4.  服务端渲染支持
 
-### 用法
+### 2. 用法
 
 ```tsx
 const res = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?)
@@ -346,9 +346,9 @@ const getSnapshot = () => {
 const res = useSyncExternalStore(subscribe, getSnapshot);
 ```
 
-### 案例
+### 3. 案例
 
-#### **1.订阅浏览器 Api 实现自定义 hook(useStorage)**
+#### **订阅浏览器 Api 实现自定义 hook(useStorage)**
 
 我们实现一个 useStorage Hook，用于订阅 localStorage 数据。这样做的好处是，我们可以确保组件在 localStorage 数据发生变化时，自动更新同步。
 
@@ -417,7 +417,7 @@ export default App;
 
 - 跨标签页同步：在多个标签页打开该应用时，任意一个标签页修改 val，其他标签页会实时更新，保持同步状态。
 
-#### **2. 订阅 history 实现路由跳转**
+#### **订阅 history 实现路由跳转**
 
 实现一个简易的 useHistory Hook，获取浏览器 url 信息 + 参数
 
@@ -487,7 +487,7 @@ export default App;
 - history：这是 useHistory 返回的当前路径值。每次 URL 变化时，useSyncExternalStore 会自动触发更新，使 history 始终保持最新路径。
 - push 和 replace：点击“跳转”按钮调用 push("/AA")，会将 /AA 推入历史记录；点击“替换”按钮调用 replace("/CCC")，则会将当前路径替换为 /CCC。
 
-### 注意事项
+### 4. 注意事项
 
 如果 `getSnapshot` 返回值不同于上一次，React 会重新渲染组件。这就是为什么，如果总是返回一个不同的值，会进入到一个无限循环，并产生这个报错。
 
@@ -516,28 +516,28 @@ function getSnapshot() {
 }
 ```
 
-## useTransition
+## 四、useTransition
 
 `useTransition` 是 React 18 中引入的一个 Hook，用于管理 UI 中的过渡状态，特别是在处理长时间运行的状态更新时。它允许你将某些更新标记为“过渡”状态，这样 React 可以优先处理更重要的更新，比如用户输入，同时延迟处理过渡更新。
 
-### 用法
+### 1. 用法
 
 ```ts
 const [isPending, startTransition] = useTransition();
 ```
 
-### 参数
+### 2. 参数
 
 `useTransition` 不需要任何参数
 
-### 返回值
+### 3. 返回值
 
 `useTransition` 返回一个数组,包含两个元素
 
 1.  `isPending`(boolean)，告诉你是否存在待处理的 transition。
 2.  `startTransition`(function) 函数，你可以使用此方法将状态更新标记为 transition。
 
-### 例子
+### 4. 例子
 
 使用`mockjs`模拟数据
 
@@ -740,18 +740,18 @@ useTransition 的核心原理是将一部分状态更新处理为低优先级任
     +---> [低优先级过渡更新] --> [调度器] --> [等待处理]
 ```
 
-## useDeferredValue
+## 五、useDeferredValue
 
 useDeferredValue 用于延迟某些状态的更新，直到主渲染任务完成。这对于高频更新的内容（如输入框、滚动等）非常有用，可以让 UI 更加流畅，避免由于频繁更新而导致的性能问题。
 
-### 关联问题：useTransition 和 useDeferredValue 的区别
+### 1. 关联问题：useTransition 和 useDeferredValue 的区别
 
 `useTransition` 和 `useDeferredValue` 都涉及延迟更新，但它们关注的重点和用途略有不同：
 
 - useTransition 主要关注点是`状态的过渡`。它允许开发者控制某个更新的延迟更新，还提供了过渡标识，让开发者能够添加过渡反馈。
 - useDeferredValue 主要关注点是`单个值`的延迟更新。它允许你把特定状态的更新标记为低优先级。
 
-### 用法用法
+### 2. 用法
 
 ```ts
 const deferredValue = useDeferredValue(value);
@@ -769,7 +769,7 @@ const deferredValue = useDeferredValue(value);
 
 当 `useDeferredValue` 接收到与之前不同的值（使用 Object.is 进行比较）时，除了当前渲染（此时它仍然使用旧值），它还会安排一个后台重新渲染。这个后台重新渲染是可以被中断的，如果 value 有新的更新，React 会从头开始重新启动后台渲染。举个例子，如果用户在输入框中的输入速度比接收延迟值的图表重新渲染的速度快，那么图表只会在用户停止输入后重新渲染。
 
-### 案例:延迟搜索数据的更新
+### 3. 案例:延迟搜索数据的更新
 
 ```tsx
 import React, { useState, useTransition, useDeferredValue } from 'react';
@@ -820,7 +820,7 @@ export default App;
 
 使用 useDeferredValue 后，输入框中的搜索内容不会立即触发列表过滤，避免频繁的渲染。输入停止片刻后(看起来像节流)，列表会自动更新为符合条件的数据，确保了较流畅的交互体验。
 
-### 陷阱
+### 4. 陷阱
 
 - `useDeferredValue` 并不是防抖,防抖是需要一个固定的延迟时间，譬如 1 秒后再处理某些行为，但是 useDeferredValue 并不是一个固定的延迟，它会根据用户设备的情况进行延迟，当设备情况好，那么延迟几乎是无感知的
 
