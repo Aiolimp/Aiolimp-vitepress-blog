@@ -28,6 +28,19 @@ export const sideBarData = [
 
   {
     documentRootPath: '/docs',
+    scanStartPath: 'knowledge/Vite',
+    resolvePath: 'knowledge/Vite/',
+    useTitleFromFileHeading: true,
+    useTitleFromFrontmatter: true,
+    frontmatterTitleFieldName: 'title',
+    hyphenToSpace: true,
+    underscoreToSpace: true,
+    collapsed: false,
+    collapseDepth: 2,
+  },
+
+  {
+    documentRootPath: '/docs',
     scanStartPath: 'interview/Examples',
     resolvePath: 'interview/Examples/',
     useTitleFromFileHeading: true,

@@ -51,6 +51,7 @@ export default defineConfig({
         items: [
           { text: 'React框架', link: '/knowledge/React/ReactHooks1' },
           { text: 'Node', link: '/knowledge/Node/index' },
+          { text: 'Vite', link: '/knowledge/Vite/index' },
         ],
       },
       {
