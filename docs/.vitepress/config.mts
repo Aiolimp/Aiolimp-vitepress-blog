@@ -55,6 +55,7 @@ export default defineConfig({
           { text: '工程化', link: '/knowledge/Engineering/postcss' },
           { text: 'SSR', link: '/knowledge/SSR/nuxt' },
           { text: '服务端', link: '/knowledge/Server/Mysql' },
+          { text: '场景合集', link: '/knowledge/Scenarios/updateVersion' },
         ],
       },
       {
