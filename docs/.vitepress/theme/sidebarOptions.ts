@@ -12,7 +12,18 @@ export const sideBarData = [
     collapsed: false,
     collapseDepth: 2,
   },
-
+  {
+    documentRootPath: '/docs',
+    scanStartPath: 'knowledge/Vue',
+    resolvePath: 'knowledge/Vue/',
+    useTitleFromFileHeading: true,
+    useTitleFromFrontmatter: true,
+    frontmatterTitleFieldName: 'title',
+    hyphenToSpace: true,
+    underscoreToSpace: true,
+    collapsed: false,
+    collapseDepth: 2,
+  },
   {
     documentRootPath: '/docs',
     scanStartPath: 'knowledge/React',
