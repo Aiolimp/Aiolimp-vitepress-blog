@@ -1,0 +1,163 @@
+---
+title: Vue组件通信
+theme: solarized-dark
+---
+
+# Vue 组件通信
+
+## 一、 父子通信
+
+### 1.defineProps
+
+- 运行时声明：传递给 `defineProps()` 的参数会作为运行时的 `props` 选项使用
+
+```vue
+<!-- Parent.vue -->
+<Child foo="Hello" bar="1" />
+
+<!-- Child.vue -->
+<script setup lang="ts">
+const props = defineProps({
+  foo: { type: String, required: true },
+  bar: Number,
+});
+
+props.foo; // string
+props.bar; // number | undefined
+</script>
+```
+
+- 基于类型的声明：通过泛型参数来定义 props 的类型
+
+```vue
+<script setup lang="ts">
+const props = defineProps<{
+  foo: string;
+  bar?: number;
+}>();
+</script>
+```
+
+也可以将 props 的类型移入一个单独的接口中：
+
+```vue
+<script setup lang="ts">
+interface Props {
+  foo: string;
+  bar?: number;
+}
+
+const props = defineProps<Props>();
+</script>
+```
+
+### 2.默认值 withDefaults
+
+当使用基于类型的声明时，我们失去了为 `props` 声明默认值的能力。这可以通过 `withDefaults` 编译器宏解决：
+
+```js
+export interface Props {
+  msg?: string
+  labels?: string[]
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  msg: 'hello',
+  labels: () => ['one', 'two']
+})
+```
+
+这将被编译为等效的运行时 props `default` 选项。此外，`withDefaults` 帮助程序为默认值提供类型检查，并确保返回的 props 类型删除了已声明默认值的属性的可选标志
+
+### 3.defineEmits
+
+- 子组件通过事件向父组件发送数据。
+
+```vue
+<!-- Child.vue -->
+<script setup>
+const emit = defineEmits(['sendMsg']);
+emit('sendMsg', 'Hello Parent');
+</script>
+
+<!-- Parent.vue -->
+<Child @sendMsg="handleMsg" />
+```
+
+### 4.defineExpose
+
+- 子组件声明它所暴露的内容，父组件只能访问所暴露的内容。
+
+```js
+const keyword = ref('');
+const changeSelect = () => {};
+
+defineExpose({
+  keyword,
+  changeSelect,
+});
+```
+
+## 二、跨组件通信
+
+### 1.mitt
+
+到 Vue 3 中，`$on`、`$off` 和 `$once` 方法已从 Vue 实例中完全删除，而且 vue3 中没有 Vue 构造函数，也就没有 `Vue.prototype` 以及组合式 API 写法没有 `this`。因此，要使用 `eventBus` 模式，就需要安装一个外部事件发射器和监听器包，常用的比如 [mitt](https://link.juejin.cn?target=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Fmitt)。
+
+```js
+// bus.js
+import mitt from 'mitt'
+export const bus = mitt()
+
+// A.vue
+bus.emit('customEvent', value)
+
+// B.vue
+bus.on('customEvent', val => { ... })
+```
+
+### 2.依赖注入：provide + inject
+
+类似于 React 中的 Context，只是用起来比 React 稍微简单点而已，主要用在跨层级组件通信传值~
+
+- `provide()` 接受两个参数：第一个参数是要注入的 key，可以是一个字符串或者一个 symbol，第二个参数是要注入的值。
+- 当使用 TypeScript 时，key 可以是一个被类型断言为 `InjectionKey` 的 symbol。`InjectionKey` 是一个 Vue 提供的工具类型，继承自 `Symbol`，可以用来同步 `provide()` 和 `inject()` 之间值的类型。
+
+与注册生命周期钩子的 API 类似，`provide()` 必须在组件的 `setup()` 阶段同步调用。
+
+```VUE
+<script setup>
+import { ref, provide } from 'vue'
+import { fooSymbol } from './injectionSymbols'
+//提供静态值
+provide('foo', 'bar')
+// 提供响应式的值
+const count = ref(0)
+provide('count', count)
+// 提供时将 Symbol作为 key
+provide(fooSymbol, count)
+</script>
+
+```
+
+取值：
+
+```VUE
+<script setup>
+import { inject } from 'vue'
+import { fooSymbol } from './injectionSymbols'
+// 注入不含默认值的静态值
+const foo = inject('foo')
+// 注入响应式的值
+const count = inject('count')
+// 通过 Symbol 类型的 key 注入
+const foo2 = inject(fooSymbol)
+// 注入一个值，若为空则使用提供的默认值
+const bar = inject('foo', 'default value')
+//注入一个值，若为空则使用提供的函数类型的默认值
+const fn = inject('function', () => {})
+//注入一个值，若为空则使用提供的工厂函数
+const baz = inject('factory', () => new ExpensiveObject(), true)
+</script>
+
+```

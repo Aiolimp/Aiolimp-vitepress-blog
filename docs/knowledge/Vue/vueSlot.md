@@ -1,0 +1,94 @@
+---
+title: Vue插槽
+theme: solarized-dark
+---
+
+# Vue 插槽
+
+插槽（`Slots`）是 `Vue` 中非常核心的内容，用于组件内容分发。它允许父组件将内容插入到子组件的指定位置，使得组件更加灵活和可复用。
+
+## 一、默认插槽（Default Slot）
+
+```js
+<!-- 父组件 -->
+<BaseLayout>
+  <p>插入的内容</p>
+</BaseLayout>
+
+<!-- 子组件 -->
+<template>
+  <div class="container">
+    <slot></slot> <!-- 默认插槽 -->
+  </div>
+</template>
+```
+
+## 二、具名插槽（Named Slots）
+
+```js
+<!-- 父组件 -->
+<BaseLayout>
+  <template #header>
+    <h1>标题</h1>
+  </template>
+  <template #footer>
+    <p>页脚</p>
+  </template>
+</BaseLayout>
+
+<!-- 子组件 -->
+<template>
+  <header><slot name="header"></slot></header>
+  <main><slot></slot></main>
+  <footer><slot name="footer"></slot></footer>
+</template>
+```
+
+## 三、作用域插槽（Scoped Slots）
+
+用于父组件访问子组件传递出来的**数据作用域**。
+
+```js
+<!-- 父组件 -->
+<ItemList :items="list">
+  <template #default="{ item }"> // 通过结构方式取值
+    <div>{{ item.name }}</div>
+  </template>
+</ItemList>
+
+<!-- 子组件 -->
+<template>
+  <div v-for="item in items" :key="item.id">
+    <slot :item="item"></slot> <!-- 提供作用域数据 -->
+  </div>
+</template>
+```
+
+## **四、v-slot 语法糖**
+
+- 简写命名插槽：`<template v-slot:header>` 可简写为 `#header`
+- 默认插槽简写：
+
+```js
+<ItemList v-slot="{ item }">
+  {{ item.name }}
+</ItemList>
+```
+
+## 五、动态插槽名
+
+插槽可以是一个变量名
+
+```js
+<template v-slot:[dynamicName]>
+  动态插槽内容
+</template>
+```
+
+## 六、插槽默认内容（Fallback Content）
+
+```js
+<slot>默认内容</slot>
+```
+
+插槽是 Vue 组件设计中非常重要的内容。通过合理使用插槽，可以实现 **灵活的内容组合、数据共享** 和 **可扩展组件结构**，是构建复杂 UI 的关键手段之一。
