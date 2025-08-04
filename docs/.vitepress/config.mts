@@ -55,7 +55,7 @@ export default defineConfig({
           { text: 'Vite', link: '/knowledge/Vite/index' },
           { text: '工程化', link: '/knowledge/Engineering/postcss' },
           { text: 'SSR', link: '/knowledge/SSR/nuxt' },
-          { text: '服务端', link: '/knowledge/Server/Mysql' },
+          { text: '服务端', link: '/knowledge/Server/MySql' },
           { text: '场景合集', link: '/knowledge/Scenarios/updateVersion' },
         ],
       },
