@@ -1,5 +1,5 @@
 ---
-title: Redux 基础知识整理
+title: Redux
 theme: solarized-dark
 ---
 

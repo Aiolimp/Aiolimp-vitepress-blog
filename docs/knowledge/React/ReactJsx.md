@@ -1,5 +1,5 @@
 ---
-title: React JSX 基本用法
+title: React JSX用法
 theme: solarized-dark
 ---
 

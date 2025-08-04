@@ -1,5 +1,5 @@
 ---
-title: Zustand状态库基本使用
+title: Zustand状态库
 theme: solarized-dark
 ---
 

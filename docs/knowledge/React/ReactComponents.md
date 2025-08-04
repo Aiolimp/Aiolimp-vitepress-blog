@@ -1,5 +1,5 @@
 ---
-title: React组件基础
+title: React组件
 theme: solarized-dark
 ---
 

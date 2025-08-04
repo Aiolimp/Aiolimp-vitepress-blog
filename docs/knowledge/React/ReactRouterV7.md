@@ -1,5 +1,5 @@
 ---
-title: React Router V7 基本使用
+title: React Router V7
 theme: solarized-dark
 ---
 

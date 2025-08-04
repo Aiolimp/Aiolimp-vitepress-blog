@@ -3,7 +3,7 @@ title: Vue3速通清单
 theme: solarized-dark
 ---
 
-# Vue3 备忘清单
+# Vue3 速通清单
 
 ## 一、入门
 
