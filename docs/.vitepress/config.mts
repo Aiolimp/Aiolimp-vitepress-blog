@@ -49,10 +49,10 @@ export default defineConfig({
       {
         text: '知识库',
         items: [
+          { text: 'JS/TS', link: '/knowledge/JS/JavaScript数据类型' },
           { text: 'Vue框架', link: '/knowledge/Vue/vue' },
           { text: 'React框架', link: '/knowledge/React/ReactHooks1' },
           { text: 'Node', link: '/knowledge/Node/index' },
-          { text: 'Vite', link: '/knowledge/Vite/index' },
           { text: '工程化', link: '/knowledge/Engineering/postcss' },
           { text: 'SSR', link: '/knowledge/SSR/nuxt' },
           { text: '服务端', link: '/knowledge/Server/MySql' },

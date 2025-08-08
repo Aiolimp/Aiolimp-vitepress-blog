@@ -3,7 +3,7 @@ title: vite-plugin-svg-icons
 theme: solarized-dark
 ---
 
-## vite-plugin-svg-icons
+# vite-plugin-svg-icons
 
 官方文档：https://github.com/vbenjs/vite-plugin-svg-icons/blob/main/README.zh_CN.md
 
