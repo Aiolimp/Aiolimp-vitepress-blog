@@ -38,6 +38,18 @@ export const sideBarData = [
   },
   {
     documentRootPath: '/docs',
+    scanStartPath: 'knowledge/Network',
+    resolvePath: 'knowledge/Network/',
+    useTitleFromFileHeading: true,
+    useTitleFromFrontmatter: true,
+    frontmatterTitleFieldName: 'title',
+    hyphenToSpace: true,
+    underscoreToSpace: true,
+    collapsed: false,
+    collapseDepth: 2,
+  },
+  {
+    documentRootPath: '/docs',
     scanStartPath: 'knowledge/JS',
     resolvePath: 'knowledge/JS/',
     useTitleFromFileHeading: true,
