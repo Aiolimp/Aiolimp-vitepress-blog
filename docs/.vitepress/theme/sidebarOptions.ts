@@ -36,6 +36,19 @@ export const sideBarData = [
     collapsed: false,
     collapseDepth: 2,
   },
+
+  {
+    documentRootPath: '/docs',
+    scanStartPath: 'knowledge/Scenarios',
+    resolvePath: 'knowledge/Scenarios/',
+    useTitleFromFileHeading: true,
+    useTitleFromFrontmatter: true,
+    frontmatterTitleFieldName: 'title',
+    hyphenToSpace: true,
+    underscoreToSpace: true,
+    collapsed: false,
+    collapseDepth: 2,
+  },
   {
     documentRootPath: '/docs',
     scanStartPath: 'knowledge/Network',
