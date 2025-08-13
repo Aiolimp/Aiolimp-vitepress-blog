@@ -3,6 +3,8 @@ title: MySql常见命令
 theme: solarized-dark
 ---
 
+# MySql 常见命令
+
 **启动 mysql**
 
 ```sql
