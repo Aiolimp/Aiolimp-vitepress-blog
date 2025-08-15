@@ -1,9 +1,9 @@
 ---
-title: Fabric.js
+title: 使用Fabric.js操作canvas
 theme: solarized-dark
 ---
 
-# Fabric.js
+# 使用 Fabric.js 操作 canvas
 
 [Fabric.js](https://fabricjs.com/) 是一个流行的 JavaScript HTML5 canvas 库，它使得在 JavaScript 中处理和操作图形变得更加简单。这个库提供了一组丰富的 API，可以帮助你方便地创建、操作和修改 HTML5 canvas 上的图形对象。
 
