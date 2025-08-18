@@ -381,7 +381,7 @@ export default App;
 
 我们更改输入框的值，可以看到函数 Id 在增加，说明函数被重新创建了。
 
-![usecallback1.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/01c78f65df9b49a3b507177278cae2a6~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgVHJlZUZpc2g=:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMzQ3NDExMjQ3NjYzNjgyNCJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1753946849&x-orig-sign=kYqOpfBL6ECIRRAypxUV1ofJHrc%3D)
+![usecallback1.png](./img/ReactHooks1.png)
 
 为什么是 4 呢，因为默认是 1，然后输入框更改了 3 次，所以是 4，那么这样好吗？我们使用 useCallback 来优化一下。
 
@@ -393,7 +393,7 @@ const changeSearch = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 }, []);
 ```
 
-![usecallback2.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/4c7a86807d444f549bdea3913c33d58b~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgVHJlZUZpc2g=:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMzQ3NDExMjQ3NjYzNjgyNCJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1753946849&x-orig-sign=OUI5ygTrK2bveFNWdOJgRqZXGbE%3D)
+![usecallback2.png](./img/ReactHooks2.png)
 
 ### 5.案例 2
 
@@ -442,7 +442,7 @@ export default App;
 
 因为 App 重新渲染了，所以 childCallback 函数会被重新创建，然后传递给子组件，子组件会判断这个函数是否发生变化，但是每次创建的函数内存地址都不一样，所以子组件会重新渲染。
 
-![useCallback-3.Bd3ynv-p.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/c2cd993bc31a467182572e3cb2bfc59f~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgVHJlZUZpc2g=:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMzQ3NDExMjQ3NjYzNjgyNCJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1753946849&x-orig-sign=%2FwAZTFapkuEx7f2t4S6ZtE9aIbg%3D)
+![useCallback-3.Bd3ynv-p.png](./img/ReactHooks3.png)
 
 > 只需要在 childCallback 函数上使用 useCallback，就可以优化性能。
 
@@ -495,8 +495,6 @@ const debugValue = useDebugValue(value);
 
 1.  访问 [React Developer Tools](https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=zh-cn)
 2.  点击"添加至 Chrome"即可安装
-
-2.**在微信公众号(`小满zs`) 回复 `React/React工具` 获取安装包**
 
 > 离线安装步骤
 >
@@ -607,7 +605,7 @@ useDebugValue(cookie, (value) => `cookie: ${value}`);
 
 在 React DevTools 中的显示效果：
 
-![useDebugValue.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/e18a28c762674e2fbb3c1e11292da038~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgVHJlZUZpc2g=:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMzQ3NDExMjQ3NjYzNjgyNCJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1753946849&x-orig-sign=3go%2FB%2BW9%2FiyD0Re%2F4YHbc1Mk7fs%3D)
+![useDebugValue.png](./img/ReactHooks4.png)
 
 ### 6.使用建议
 

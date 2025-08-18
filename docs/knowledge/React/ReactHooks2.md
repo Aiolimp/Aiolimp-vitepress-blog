@@ -656,8 +656,6 @@ function App() {
 export default App;
 ```
 
-![useref2.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/aeb75748d8874a96b7bb7755c3ec3efa~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgVHJlZUZpc2g=:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMzQ3NDExMjQ3NjYzNjgyNCJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1753946814&x-orig-sign=2usH7QgVFQs%2Fsyd4k2rFDzToJgo%3D)
-
 ### 3.实际应用
 
 我们实现一个计时器的例子，在点击开始计数的时候，计时器会每 300ms 执行一次，在点击结束计数的时候，计时器会被清除。
