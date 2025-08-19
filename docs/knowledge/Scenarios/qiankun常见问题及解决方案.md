@@ -122,12 +122,12 @@ const { template, execScripts, getExternalScripts } = await importEntry('//local
   export async function bootstrap(props) {
     console.log('子应用初始化')
   }
-
+  
   export async function mount(props) {
     console.log('子应用挂载')
     render(props.container)
   }
-
+  
   export async function unmount(props) {
     console.log('子应用卸载')
     ReactDOM.unmountComponentAtNode(props.container)
@@ -447,7 +447,7 @@ props.actions.setGlobalState({
 
 - 主应用监听到 route 改变时，执行 router.push(state.route)。
 
-## **九、 **常见问题以及解决方案
+## 九、 常见问题以及解决方案
 
 - **样式冲突** → 使用 qiankun 样式隔离 + BEM 命名。
 - **路由不统一** → 主子应用约定前缀（如 /app1/\*），避免冲突。
@@ -465,3 +465,77 @@ props.actions.setGlobalState({
 - 脚本执行：请求外联 JS 资源，通过 (0, eval) 动态执行脚本
 
 - 生命周期识别：识别微应用入口脚本并解析导出的生命周期函数
+
+## 十一、vite 中如何使用 qiankun
+
+在 Vite + qiankun 的微前端项目里，使用 vite-plugin-qiankun 主要是为了 **简化配置、自动处理沙箱和生命周期挂载、解决 Vite 与 qiankun 的兼容问题**。我帮你梳理一下原因和原理：
+
+### **1.背景问题**
+
+直接用 Vite + qiankun 会遇到几个坑：
+
+1. **子应用入口导出生命周期问题**
+
+   - qiankun 要求子应用导出 bootstrap/mount/unmount。
+   - Vite 默认是 ESM 模块，qiankun需要将应用打包为UMD格式
+
+2. **资源路径（publicPath/base）问题**
+
+   - qiankun 在微前端环境下需要动态加载 JS/CSS。
+   - Vite 默认 base: '/'，生产环境打包时路径可能找不到。
+
+3. **子应用打包格式问题**
+
+   - qiankun 需要子应用可以在沙箱里执行 JS，同时暴露生命周期函数。
+   - Vite 默认打包出来是 ESModule，直接挂到 window 上可能出问题。
+
+4. **开发模式下热更新 (HMR)**
+
+   - 子应用在 Vite dev server 下 HMR 会生效，但 qiankun 挂载容器时需要保证 root 容器统一。
+   - 需要自动处理 HMR 入口和 container 的挂载。
+
+### **2.vite-plugin-qiankun 的作用**
+
+vite-plugin-qiankun 就是为 Vite + qiankun 提供“开箱即用”的解决方案：
+
+1. **自动导出生命周期**
+   - 插件会自动把子应用入口的 App 或默认导出的组件，包装成 bootstrap/mount/unmount，避免手动写挂载逻辑。
+2. **自动处理 base/publicPath**
+   - 在 Vite dev/生产环境下，自动调整 base，保证 JS/CSS 资源能被 qiankun 沙箱正确加载。
+3. **兼容沙箱 Proxy**
+   - 插件会确保子应用 JS 执行时挂载在 qiankun 的沙箱 Proxy 上，而不是全局 window。
+4. **支持 HMR**
+   - 插件会在开发模式下自动处理 root 容器，避免刷新或子应用卸载时 DOM 丢失。
+5. **兼容性**
+   - 插件自动配置UMD格式输出，解决Vite和qiankun之间的模块系统差异
+
+### **3.使用方式**
+
+```ts
+// vite.config.ts
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { qiankun } from 'vite-plugin-qiankun';
+
+export default defineConfig({
+  plugins: [
+    react(),
+    qiankun('subApp1', { useDevMode: true }), // 第一个参数是子应用 name
+  ],
+  base: './', // 确保资源路径正确
+});
+```
+
+> useDevMode: true 是为了 Vite dev 模式下 HMR 正常工作
+
+### **4.总结**
+
+- **简化配置**：自动处理复杂的构建配置
+
+- 开发体验：在开发环境下提供良好的调试体验
+
+- **兼容性**：解决Vite和qiankun之间的模块系统差异
+
+- **自动化**：自动注入生命周期函数和必要的代码
+
+- **路径处理**：正确处理静态资源路径
