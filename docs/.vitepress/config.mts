@@ -58,6 +58,7 @@ export default defineConfig({
           { text: 'SSR', link: '/knowledge/SSR/nuxt' },
           { text: '服务端', link: '/knowledge/Server/MySql' },
           { text: '场景合集', link: '/knowledge/Scenarios/updateVersion' },
+          { text: 'AI', link: '/knowledge/AI/LangChainAgent' },
         ],
       },
       {
