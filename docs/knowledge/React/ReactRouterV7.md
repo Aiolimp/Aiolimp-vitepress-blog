@@ -212,7 +212,7 @@ export default About;
 
 当使用`createBrowserRouter`时，如果刷新页面会丢失状态，这是因为浏览器默认会去请求服务器上的资源，如果服务器上没有资源，就会返回 404。 要解决这个问题就需要在服务器配置一个回退路由，当请求的资源不存在时，返回`index.html`。
 
-![image.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/ea04cc72048741c994c7a8782b4acc3c~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgVHJlZUZpc2g=:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMzQ3NDExMjQ3NjYzNjgyNCJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1753840606&x-orig-sign=dH2uTrRQK86WaqOmmAEyvqS0kOI%3D)
+![image.png](./img/ReactRouterV71.png)
 
 ### Nginx(推荐)
 
@@ -224,7 +224,7 @@ location / {
 }
 ```
 
-![image.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/721bd8e51bd9499ebfcf507b241fd71f~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgVHJlZUZpc2g=:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMzQ3NDExMjQ3NjYzNjgyNCJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1753840606&x-orig-sign=e4XtKnasqTevh0ZGgRxFORaYA3E%3D)
+![image.png](./img/ReactRouterV72.png)
 
 ### Apache
 
@@ -292,7 +292,7 @@ npm install @ant-design/icons
 
 我们创建一个`layout`文件夹，在文件夹中创建一个`Content` `Header` `Menu` 文件夹，在文件夹中创建一个`index.tsx`文件，文件内容如下：
 
-![router-2.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/bbf712540d3349ee9d9c03f9654effb8~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgVHJlZUZpc2g=:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMzQ3NDExMjQ3NjYzNjgyNCJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1753840606&x-orig-sign=sviNalKhAUq2JNGuB7B21qcfMkE%3D)
+![router-2.png](./img/ReactRouterV73.png)
 
 - src/layout/Menu/index.tsx `菜单页面`
 
@@ -782,7 +782,7 @@ export default function Content() {
 
 使用懒加载打包后，会把懒加载的组件打包成一个独立的文件，从而减小主包的大小。
 
-![router-1.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/f51f1d035b704ea796d38a5f2b794601~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgVHJlZUZpc2g=:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMzQ3NDExMjQ3NjYzNjgyNCJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1753840606&x-orig-sign=uE5ClqVPwUg8M205Iao2LLLFS5A%3D)
+![router-1.png](./img/ReactRouterV74.png)
 
 > \[!CAUTION]
 >

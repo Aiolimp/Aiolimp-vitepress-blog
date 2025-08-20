@@ -3,13 +3,15 @@ title: React中CSS使用方法
 theme: solarized-dark
 ---
 
-# css modules
+# React 中 CSS 使用方法
 
-## 什么是 css modules
+## 一、css modules
+
+### 1. 什么是 css modules
 
 因为 `React` 没有 Vue 的 Scoped，但是 React 又是 SPA(单页面应用)，所以需要一种方式来解决 css 的样式冲突问题，也就是把每个组件的样式做成单独的作用域，实现样式隔离，而 css modules 就是一种解决方案，但是我们需要借助一些工具来实现，比如`webpack`，`postcss`，`css-loader`，`vite`等。
 
-## 如何在 Vite 中使用 css modules
+### 2. 如何在 Vite 中使用 css modules
 
 css modules，可以配合各种 css 预处理去使用，例如`less`，`sass`，`stylus`等。
 
@@ -46,7 +48,7 @@ export default function Button() {
 <button class="button_pmkzx_6">按钮</button>
 ```
 
-## 修改 css modules 规则
+### 3.修改 css modules 规则
 
 - 在 vite.config.ts 中配置 css modules 的规则
 
@@ -61,7 +63,7 @@ export default defineConfig({
 });
 ```
 
-### 例子 例如设置为`(localsConvention:camelCaseOnly)`
+#### 设置为`(localsConvention:camelCaseOnly)`
 
 > \[!WARNING]
 >
@@ -87,7 +89,7 @@ export default function Button() {
 }
 ```
 
-### 例子 例如设置为`(localsConvention:dashesOnly)`会将所有-的类名转化为驼峰，并且原始的类名会被删除
+#### 设置为`(localsConvention:dashesOnly)`会将所有-的类名转化为驼峰，并且原始的类名会被删除
 
 > \[!WARNING]
 >
@@ -117,7 +119,7 @@ export default function Button() {
 >
 > 如果想同时支持驼峰命名和`-`连接的命名，可以设置为`localsConvention:[camelCase|dashes]`，这样就可以同时支持驼峰命名和`-`连接的命名。
 
-### 例子 修改 css modules 的类名规则
+#### 修改 css modules 的类名规则
 
 - 在 vite.config.ts 中配置 css modules 的规则
 
@@ -146,7 +148,7 @@ export default defineConfig({
 <button class="button--pmkzx_6">类名 + 分隔符 + 哈希值</button>
 ```
 
-## 维持类名
+### 4. 维持类名
 
 在样式文件中的某些样式，不希望被编译成 css modules，可以设置为`global`
 
@@ -177,32 +179,32 @@ const App: React.FC = () => {
 };
 ```
 
-# css-in-js
+## 二、css-in-js
 
 `css-in-js` 是将 CSS 代码 跟 JS 代码 混合在一起，通过 JS 来动态的生成 CSS 样式，但是这样的话与我们的认知是背道而驰的，正常应该是 CSS JS HTML 分离的，但是由于 CSS 缺乏作用域，所以形成了 `css-in-js` 这种写法，注意 `css-in-js` 并不是一种技术，而是一种思想。
 
-## 优缺点
+### 1. 优缺点
 
-### 优点：
+#### 优点
 
 - 可以让 CSS 拥有独立的作用域，阻止 CSS 泄露到组件外部，防止冲突。
 - 可以动态的生成 CSS 样式，根据组件的状态来动态的生成 CSS 样式。
 - CSS-in-JS 可以方便地实现主题切换功能，只需更改主题变量即可改变整个应用的样式。
 
-### 缺点：
+#### 缺点
 
 - css-in-js 是基于运行时，所以会损耗一些性能(电脑性能高可以忽略)
 - 调试困难，CSS-in-JS 的样式难以调试，因为它们是动态生成的，而不是在 CSS 文件中定义的。
 
-## styled-components
+### 2. styled-components
 
-### 1.安装
+#### 安装
 
 ```sh
 npm install styled-components
 ```
 
-### 2.创建一个 `Button` 组件
+#### 创建一个 `Button` 组件
 
 ```tsx
 import styled from 'styled-components';
@@ -223,12 +225,12 @@ function App() {
 export default App;
 ```
 
-![react-css-1.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/0a83ab0d76bc470eba0d3e2388a87bf1~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgVHJlZUZpc2g=:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMzQ3NDExMjQ3NjYzNjgyNCJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1753948666&x-orig-sign=T2WS6ACvCTfcLM128XKCws8ktSw%3D)
+![react-css-1.png](./img/ReactCss1.png)
 我们可以看到，`Button` 组件的类名是通过`js`随机生成的的，这样就避免了类名冲突的问题。
 
-### 3.更多用法
+#### 更多用法
 
-#### 继承
+**继承**
 
 ```tsx
 import styled from 'styled-components';
@@ -254,9 +256,9 @@ function App() {
 export default App;
 ```
 
-![react-css-2.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/c1e1d3b5b0994a47a0fb4d2c34e337c5~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgVHJlZUZpc2g=:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMzQ3NDExMjQ3NjYzNjgyNCJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1753948666&x-orig-sign=WRQgak7gO3PtVR33NJ%2F2hgqYio8%3D)
+![react-css-2.png](./img/ReactCss2.png)
 
-#### 属性
+**属性**
 
 我们可以通过 `attrs` 来给组件添加属性，比如 `defaultValue`，然后通过 `props` 来获取属性值。
 
@@ -288,7 +290,7 @@ const App: React.FC = () => {
 export default App;
 ```
 
-#### 全局样式
+**全局样式**
 
 我们可以通过 `createGlobalStyle` 来创建全局样式, 然后放到 `App` 组件中。
 
@@ -320,7 +322,7 @@ const App: React.FC = () => {
 export default App;
 ```
 
-#### 动画
+**动画**
 
 我们可以通过 `keyframes` 来创建动画。
 
@@ -353,7 +355,7 @@ const App: React.FC = () => {
 export default App;
 ```
 
-### 原理剖析
+### 3. 原理剖析
 
 这个技术叫`标签模板`， 是 ES6 新增的特性，它可以紧跟在函数后面，该函数将被用来调用这个字符串模板
 
@@ -381,13 +383,13 @@ console.log(a);
 //  height:50px;
 ```
 
-# 原子化 css
+# 三、原子化 css
 
-## 什么是原子化 css
+### 1. 什么是原子化 css
 
 原子化 CSS 是一种现代 CSS 开发方法，它将 CSS 样式拆分成最小的、单一功能的类。比如一个类只负责设置颜色，另一个类只负责设置边距。这种方式让样式更容易维护和复用，能提高开发效率，减少代码冗余。通过组合这些小型样式类，我们可以构建出复杂的界面组件。
 
-## 原子化 css 基本概念
+### 2.原子化 css 基本概念
 
 原子化 css 是一种 css 的编程范式，它将 css 的样式拆分成最小的单元，每个单元都是一个独立的 css 类，通过这些独立的 css 类来构建整个页面的样式，简单举个例子：
 
@@ -410,15 +412,15 @@ console.log(a);
 <section class="bg-red text-center p-10">原子化 css</section>
 ```
 
-![加载失败](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/a7b23f62e2944c12898a9383965f7458~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgVHJlZUZpc2g=:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMzQ3NDExMjQ3NjYzNjgyNCJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1753948666&x-orig-sign=Mq%2B9%2BSv3zCUnx%2FZ3wNX6TfZFNJI%3D)
+![加载失败](./img/ReactCss3.png)
 
-## TailWind Css
+### 3.TailWind Css
 
 [TailWind Css 官网](https://tailwindcss.com/)
 
 TailWind 是原子化 css 的一种实现方式，它内置了许多细粒度的 class 类，这些细粒度的 class 类可以组合使用，来构建出复杂的界面组件。
 
-### 如何使用 TailWind Css 4.0.1 最新版
+### 4. 如何使用 TailWind Css 4.0.1 最新版
 
 - vite 项目
 
@@ -461,9 +463,9 @@ import './tailwind.css';
 
 **5.打开 Vscode 或者 Cursor,安装 `TailWind Css` 插件,这样编写代码的时候，会自动提示 `tailwindcss` 的样式**
 
-![react-css-3.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/bb459acd60e149678ebbaa2bfc2c50d6~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgVHJlZUZpc2g=:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMzQ3NDExMjQ3NjYzNjgyNCJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1753948666&x-orig-sign=ZGexpnHUGIxurKq%2FLIwrZ6iAiTw%3D)
+![react-css-3.png](./img/ReactCss4.png)
 
-### 进阶用法@apply
+### 5. 进阶用法@apply
 
 上述代码中，类名用了很多都是堆在一起的，这样看起来很不美观，我们可以使用 `tailwindcss` 的 `@apply` 来解决这个问题。
 

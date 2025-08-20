@@ -194,7 +194,7 @@ App.tsx Card.tsx 使用
 <button onClick={() => window.onShow()}>确认</button>
 ```
 
-![组件1.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/650cddb98a184270b763cc7564372f46~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgVHJlZUZpc2g=:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMzQ3NDExMjQ3NjYzNjgyNCJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1753946914&x-orig-sign=kkZz8QQl6Rx7n7vf25Aj9rPf%2Fww%3D)
+![组件1.png](./img/ReactComponents1.png)
 
 ## 二、组件通信
 
@@ -646,7 +646,7 @@ export default App;
 
 ### 4. React 非受控组件
 
-非受控组件指的是该表单元素不受 React 的 State 管理，表单的数据由 DOM 管理。通过\*\*useRef()\*\*来获取表单元素的值。
+非受控组件指的是该表单元素不受 React 的 State 管理，表单的数据由 DOM 管理。通过`useRef()`来获取表单元素的值。
 
 我们使用**defaultValue**来设置表单的默认值，但是你要想实时获取值，就需要使用 useRef()来获取表单元素的值。跟操作 DOM 一样。
 
