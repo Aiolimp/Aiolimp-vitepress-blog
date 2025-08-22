@@ -68,6 +68,7 @@ export default defineConfig({
           { text: 'NodeJS', link: '/forward/node/index' },
           { text: 'HTTP网络', link: '/forward/http/从输入URL到页面呈现发生了什么' },
           { text: '性能优化', link: '/forward/optimize/常见前端性能指标' },
+          { text: 'Git使用', link: '/forward/git/001-Git 使用指南' },
         ],
       },
       {

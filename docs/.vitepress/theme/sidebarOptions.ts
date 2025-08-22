@@ -109,6 +109,18 @@ export const sideBarData = [
   },
   {
     documentRootPath: '/docs',
+    scanStartPath: 'forward/git',
+    resolvePath: 'forward/git/',
+    useTitleFromFileHeading: true,
+    useTitleFromFrontmatter: true,
+    frontmatterTitleFieldName: 'title',
+    hyphenToSpace: true,
+    underscoreToSpace: true,
+    collapsed: false,
+    collapseDepth: 2,
+  },
+  {
+    documentRootPath: '/docs',
     scanStartPath: 'forward/node',
     resolvePath: 'forward/node/',
     useTitleFromFileHeading: true,
