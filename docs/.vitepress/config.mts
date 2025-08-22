@@ -45,26 +45,42 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: '首页', link: '/' },
-      { text: '我的博客', link: '/blog/vitepress' },
       {
-        text: '知识库',
+        text: '前端基础',
         items: [
-          { text: 'JS/TS', link: '/knowledge/JS/JavaScript数据类型' },
-          { text: 'Vue框架', link: '/knowledge/Vue/vue' },
-          { text: 'React框架', link: '/knowledge/React/ReactHooks1' },
-          { text: '网络协议', link: '/knowledge/Network/HTTP&&HTTPS' },
-          { text: 'Node', link: '/knowledge/Node/index' },
-          { text: '工程化', link: '/knowledge/Engineering/postcss' },
-          { text: 'SSR', link: '/knowledge/SSR/nuxt' },
-          { text: '服务端', link: '/knowledge/Server/MySql' },
-          { text: '场景合集', link: '/knowledge/Scenarios/updateVersion' },
-          { text: 'AI', link: '/knowledge/AI/LangChainAgent' },
+          { text: 'JavaScript', link: '/base/JavaScript/JavaScript数据类型' },
+          { text: 'TypeScript', link: '/base/TypeScript/TypeScript基础语法' },
+        ],
+      },
+      {
+        text: '框架与工程化',
+        items: [
+          { text: 'Vue', link: '/frameWork/Vue/vue' },
+          { text: 'React', link: '/frameWork/React/ReactComponents' },
+          { text: 'Vite', link: '/frameWork/Vite/Vite minifont优化字体插件' },
+          { text: 'Webpack', link: '/frameWork/Webpack/webpack常见应用场景' },
+          { text: '开发体验', link: '/frameWork/Experience/eslint' },
+        ],
+      },
+      {
+        text: '前端进阶',
+        items: [
+          { text: 'NodeJS', link: '/forward/node/index' },
+          { text: 'HTTP网络', link: '/forward/http/从输入URL到页面呈现发生了什么' },
+          { text: '性能优化', link: '/forward/optimize/常见前端性能指标' },
+        ],
+      },
+      {
+        text: '生态拓展',
+        items: [
+          { text: '服务端', link: '/expansion/Server/Mysql' },
+          { text: '场景集合', link: '/expansion/Scenarios/组件库搭建规范' },
+          { text: 'AI & 前端', link: '/expansion/AI/LangChainAgent' },
         ],
       },
       {
         text: '前端面试',
         items: [
-          // { text: '我的掘金', link: 'https://juejin.cn/user/3544481218693597' },
           { text: 'HTML', link: '/interview/HTML/index' },
           { text: 'CSS', link: '/interview/CSS/prev' },
           { text: 'JavaScript', link: '/interview/JavaScript/prev' },
@@ -74,10 +90,8 @@ export default defineConfig({
           { text: 'Vue2/3框架', link: '/interview/Vue/index' },
           { text: 'React框架', link: '/interview/React/index' },
           { text: '算法&数据结构', link: '/interview/Algorithm/dataStructure' },
-          { text: 'PWA应用', link: '/interview/PWA/index' },
         ],
       },
-      { text: '关于我', link: '/pages/about' },
       {
         text: '博客统计',
         link: 'https://us.umami.is/share/Y2BYxCAm7R0DG2Xi/carlosme.fun',
