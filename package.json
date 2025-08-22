@@ -15,7 +15,10 @@
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "commit": "bash commit.sh",
+    "commit:auto": "bash auto-commit.sh",
+    "commit:win": "commit.bat"
   },
   "dependencies": {
     "@giscus/vue": "^3.0.0",
