@@ -74,7 +74,7 @@ export default defineConfig({
       {
         text: '生态拓展',
         items: [
-          { text: '服务端', link: '/expansion/Server/Mysql' },
+          { text: '服务端', link: '/expansion/Server/MySql' },
           { text: '场景集合', link: '/expansion/Scenarios/组件库搭建规范' },
           { text: 'AI & 前端', link: '/expansion/AI/LangChainAgent' },
         ],
