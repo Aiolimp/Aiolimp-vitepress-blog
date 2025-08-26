@@ -48,17 +48,17 @@ export default defineConfig({
       {
         text: '前端基础',
         items: [
-          { text: 'JavaScript', link: '/base/JavaScript/JavaScript数据类型' },
+          { text: 'JavaScript', link: '/base/JavaScript/001 ES6-ES2020+新特性' },
           { text: 'TypeScript', link: '/base/TypeScript/TypeScript基础语法' },
         ],
       },
       {
         text: '框架与工程化',
         items: [
-          { text: 'Vue', link: '/frameWork/Vue/vue' },
-          { text: 'React', link: '/frameWork/React/ReactComponents' },
-          { text: 'Vite', link: '/frameWork/Vite/Vite minifont优化字体插件' },
-          { text: 'Webpack', link: '/frameWork/Webpack/webpack常见应用场景' },
+          { text: 'Vue', link: '/frameWork/Vue/001 Vue3速通清单' },
+          { text: 'React', link: '/frameWork/React/001 React JSX用法' },
+          { text: 'Vite', link: '/frameWork/Vite/001 Rollup使用' },
+          { text: 'Webpack', link: '/frameWork/Webpack/001 webpack配置文件' },
           { text: '开发体验', link: '/frameWork/Experience/eslint' },
         ],
       },
@@ -66,7 +66,7 @@ export default defineConfig({
         text: '前端进阶',
         items: [
           { text: 'NodeJS', link: '/forward/node/index' },
-          { text: 'HTTP网络', link: '/forward/http/从输入URL到页面呈现发生了什么' },
+          { text: 'HTTP网络', link: '/forward/http/001 从 URL 输入到页面展现到底发生什么' },
           { text: '性能优化', link: '/forward/optimize/001-前端性能指标详解' },
           { text: 'Git使用', link: '/forward/git/001-Git 使用指南' },
         ],
@@ -74,9 +74,9 @@ export default defineConfig({
       {
         text: '生态拓展',
         items: [
-          { text: '服务端', link: '/expansion/Server/MySql' },
-          { text: '场景集合', link: '/expansion/Scenarios/组件库搭建规范' },
-          { text: 'AI & 前端', link: '/expansion/AI/LangChainAgent' },
+          { text: '服务端', link: '/expansion/Server/001 MySql常见命令' },
+          { text: '场景集合', link: '/expansion/Scenarios/001 前端 ui 组件库搭建规范' },
+          { text: 'AI & 前端', link: '/expansion/AI/001 langChain.js 开发第一个 Agent' },
         ],
       },
       {
