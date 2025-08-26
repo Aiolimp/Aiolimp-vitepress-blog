@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "Aiolimp's Blog"
-  text: 'PWA FAST SDK'
+  text: ''
   tagline: Aiolimp's Blog Web Site
   image:
     src: /pwa.svg
