@@ -21,7 +21,7 @@ export default defineConfig({
   description: "Aiolimp's Blog Web Site",
   ignoreDeadLinks: true,
   head: [
-    ['link', { rel: 'icon', href: '/duoduo.jpg' }],
+    ['link', { rel: 'icon', href: '/blackcat.svg' }],
     [
       'script',
       {
@@ -33,7 +33,7 @@ export default defineConfig({
   //启用深色模式
   appearance: 'dark',
   themeConfig: {
-    logo: '/duoduo.jpg',
+    logo: '/blackcat.svg',
     lastUpdated: {
       text: 'Updated at',
       formatOptions: {
