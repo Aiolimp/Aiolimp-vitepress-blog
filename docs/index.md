@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "Aiolimp's Blog"
   text: ''
-  tagline: Aiolimp's Blog Web Site
+  tagline: Stay foolish, Stay hungry
   image:
     src: /book.svg
     alt: VitePress
