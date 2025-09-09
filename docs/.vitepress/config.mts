@@ -90,7 +90,7 @@ export default defineConfig({
           { text: '前端工程化', link: '/interview/FrontendEngineering/index' },
           { text: 'Vue2/3框架', link: '/interview/Vue/index' },
           { text: 'React框架', link: '/interview/React/index' },
-          // { text: '算法&数据结构', link: '/interview/Algorithm/dataStructure' },
+          { text: '算法&数据结构', link: '/interview/Algorithm/dataStructure' },
         ],
       },
       {
