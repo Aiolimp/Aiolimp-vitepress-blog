@@ -93,10 +93,10 @@ export default defineConfig({
           { text: '算法&数据结构', link: '/interview/Algorithm/dataStructure' },
         ],
       },
-      {
-        text: '博客统计',
-        link: 'https://us.umami.is/share/Y2BYxCAm7R0DG2Xi/carlosme.fun',
-      },
+      // {
+      //   text: '博客统计',
+      //   link: 'https://us.umami.is/share/Y2BYxCAm7R0DG2Xi/carlosme.fun',
+      // },
     ],
 
     sidebar: generateSidebar(sideBarData),
