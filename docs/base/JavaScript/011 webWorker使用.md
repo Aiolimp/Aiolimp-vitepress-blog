@@ -5,7 +5,7 @@ theme: solarized-dark
 
 # Web Worker 使用
 
-众所周知，js最初设计是运行在浏览器中的，为了防止多个线程同时操作DOM，带来渲染冲突问题，所以js执行器被设计成单线程。但随着前端技术的发展，js能力远不止如此，当我们遇到需要大量计算的场景时（比如图像处理、视频解码等），js线程往往会被长时间阻塞，甚至造成页面卡顿，影响用户体验。为了解决单线程带来的这一弊端，Web Worker 应运而生。
+众所周知，js 最初设计是运行在浏览器中的，为了防止多个线程同时操作 DOM，带来渲染冲突问题，所以 js 执行器被设计成单线程。但随着前端技术的发展，js 能力远不止如此，当我们遇到需要大量计算的场景时（比如图像处理、视频解码等），js 线程往往会被长时间阻塞，甚至造成页面卡顿，影响用户体验。为了解决单线程带来的这一弊端，Web Worker 应运而生。
 
 ## 1. Web Worker
 
@@ -31,11 +31,11 @@ theme: solarized-dark
 const worker = new Worker(path, options);
 ```
 
-| 参数                | 说明                                                         |
-| ------------------- | ------------------------------------------------------------ |
-| path                | 有效的js脚本的地址，必须遵守同源策略。无效的js地址或者违反同源策略，会抛出`SECURITY_ERR` 类型错误 |
-| options.type        | 可选，用以指定 worker 类型。该值可以是 `classic` 或 `module`。 如未指定，将使用默认值 `classic` |
-| options.credentials | 可选，用以指定 worker 凭证。该值可以是 `omit`, `same-origin`，或 `include`。如果未指定，或者 type 是 `classic`，将使用默认值 `omit` (不要求凭证) |
+| 参数                | 说明                                                                                                                                                                                                                                                                                                                                      |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| path                | 有效的 js 脚本的地址，必须遵守同源策略。无效的 js 地址或者违反同源策略，会抛出`SECURITY_ERR` 类型错误                                                                                                                                                                                                                                     |
+| options.type        | 可选，用以指定 worker 类型。该值可以是 `classic` 或 `module`。 如未指定，将使用默认值 `classic`                                                                                                                                                                                                                                           |
+| options.credentials | 可选，用以指定 worker 凭证。该值可以是 `omit`, `same-origin`，或 `include`。如果未指定，或者 type 是 `classic`，将使用默认值 `omit` (不要求凭证)                                                                                                                                                                                          |
 | options.name        | 可选，在 [`DedicatedWorkerGlobalScope`](https://developer.mozilla.org/zh-CN/docs/Web/API/DedicatedWorkerGlobalScope) 的情况下，用来表示 worker 的 scope 的一个 [`DOMString`](https://developer.mozilla.org/zh-CN/docs/conflicting/Web/JavaScript/Reference/Global_Objects/String_6fa58bba0570d663099f0ae7ae8883ab) 值，主要用于调试目的。 |
 
 ### 2.2 js 主线程与 worker 线程数据传递
@@ -47,8 +47,9 @@ const worker = new Worker(path, options);
 
 const myWorker = new Worker('/worker.js'); // 创建worker
 
-myWorker.addEventListener('message', e => { // 接收消息
-    console.log(e.data); // Greeting from Worker.js，worker线程发送的消息
+myWorker.addEventListener('message', (e) => {
+  // 接收消息
+  console.log(e.data); // Greeting from Worker.js，worker线程发送的消息
 });
 
 // 这种写法也可以
@@ -58,15 +59,16 @@ myWorker.addEventListener('message', e => { // 接收消息
 
 myWorker.postMessage('Greeting from Main.js'); // 向 worker 线程发送消息，对应 worker 线程中的 e.data
 // worker.js（worker线程）
-self.addEventListener('message', e => { // 接收到消息
-    console.log(e.data); // Greeting from Main.js，主线程发送的消息
-    self.postMessage('Greeting from Worker.js'); // 向主线程发送消息
+self.addEventListener('message', (e) => {
+  // 接收到消息
+  console.log(e.data); // Greeting from Main.js，主线程发送的消息
+  self.postMessage('Greeting from Worker.js'); // 向主线程发送消息
 });
 ```
 
 好了，一个简单 worker 线程就创建成功了。
 
-`postMessage()` 方法接收的参数可以是字符串、对象、数组等。具体我们在#2.7讨论。
+`postMessage()` 方法接收的参数可以是字符串、对象、数组等。具体我们在#2.7 讨论。
 
 主线程与 worker 线程之间的数据传递是传值而不是传地址。所以你会发现，即使你传递的是一个`Object`，并且被直接传递回来，接收到的也不是原来的那个值了。
 
@@ -74,14 +76,14 @@ self.addEventListener('message', e => { // 接收到消息
 // main.js（主线程）
 const myWorker = new Worker('/worker.js');
 
-const obj = {name: '小明'};
-myWorker.addEventListener('message', e => { 
-    console.log(e.data === obj); // false
+const obj = { name: '小明' };
+myWorker.addEventListener('message', (e) => {
+  console.log(e.data === obj); // false
 });
 myWorker.postMessage(obj);
 // worker.js（worker线程）
-self.addEventListener('message', e => {
-    self.postMessage(e.data); // 将接收到的数据直接返回
+self.addEventListener('message', (e) => {
+  self.postMessage(e.data); // 将接收到的数据直接返回
 });
 ```
 
@@ -91,7 +93,7 @@ web worker 提供两个事件监听错误，`error` 和 `messageerror`。这两�
 
 | 事件           | 描述                                              |
 | -------------- | ------------------------------------------------- |
-| `error`        | 当worker内部出现错误时触发                        |
+| `error`        | 当 worker 内部出现错误时触发                      |
 | `messageerror` | 当 `message` 事件接收到无法被反序列化的参数时触发 |
 
 监听方式跟接收消息一致：
@@ -100,18 +102,18 @@ web worker 提供两个事件监听错误，`error` 和 `messageerror`。这两�
 // main.js（主线程）
 const myWorker = new Worker('/worker.js'); // 创建worker
 
-myWorker.addEventListener('error', err => {
-    console.log(err.message);
+myWorker.addEventListener('error', (err) => {
+  console.log(err.message);
 });
-myWorker.addEventListener('messageerror', err => {
-    console.log(err.message)
+myWorker.addEventListener('messageerror', (err) => {
+  console.log(err.message);
 });
 // worker.js（worker线程）
-self.addEventListener('error', err => {
-    console.log(err.message);
+self.addEventListener('error', (err) => {
+  console.log(err.message);
 });
-self.addEventListener('messageerror', err => {
-    console.log(err.message);
+self.addEventListener('messageerror', (err) => {
+  console.log(err.message);
 });
 ```
 
@@ -146,43 +148,39 @@ self.close(); // 直接执行close方法就ok了
 // main.js（主线程）
 const myWorker = new Worker('/worker.js'); // 创建 worker
 
-myWorker.addEventListener('message', e => {
-    console.log(e.data);
-    myWorker.terminate(); // 关闭 worker
+myWorker.addEventListener('message', (e) => {
+  console.log(e.data);
+  myWorker.terminate(); // 关闭 worker
 });
 
 myWorker.postMessage('Greeting from Main.js');
 // worker.js（worker线程）
 
-self.addEventListener('message', e => {
+self.addEventListener('message', (e) => {
+  postMessage('Greeting from Worker');
 
-    postMessage('Greeting from Worker');
-    
-    setTimeout(() => {
-        console.log('setTimeout run');
-        postMessage('Greeting from SetTimeout');
-    });
-    
-    Promise.resolve().then(() => {
-        console.log('Promise run');
-        postMessage('Greeting from Promise');
-    })
-    
-    for (let i = 0; i < 1001; i++) {
-        if (i === 1000) {
-            console.log('Loop run');
-            postMessage('Greeting from Loop');
-        }
+  setTimeout(() => {
+    console.log('setTimeout run');
+    postMessage('Greeting from SetTimeout');
+  });
+
+  Promise.resolve().then(() => {
+    console.log('Promise run');
+    postMessage('Greeting from Promise');
+  });
+
+  for (let i = 0; i < 1001; i++) {
+    if (i === 1000) {
+      console.log('Loop run');
+      postMessage('Greeting from Loop');
     }
-    
+  }
 });
 ```
 
 运行结果如下：
 
-
-
-![img](https://static.ecool.fun//article/975c0ea9-f203-4619-af60-1a4b5bee6189.awebp)
+![img](./img/webwork1.png)
 
 - 主线程只会接收到 worker 线程第一次通过 `postMessage()` 发送的消息，后面的消息不会接收到；
 - worker 线程当前 Event Loop 里的任务会继续执行，包括微任务；
@@ -196,56 +194,52 @@ self.addEventListener('message', e => {
 // main.js（主线程）
 const myWorker = new Worker('/worker.js'); // 创建 worker
 
-myWorker.addEventListener('message', e => {
-    console.log(e.data);
+myWorker.addEventListener('message', (e) => {
+  console.log(e.data);
 });
 
 myWorker.postMessage('Greeting from Main.js');
 // worker.js（worker线程）
 
-self.addEventListener('message', e => {
+self.addEventListener('message', (e) => {
+  postMessage('Greeting from Worker');
 
-    postMessage('Greeting from Worker');
-    
-    self.close(); // 关闭 worker
-    
-    setTimeout(() => {
-        console.log('setTimeout run');
-        postMessage('Greeting from SetTimeout');
-    });
-    
-    Promise.resolve().then(() => {
-        console.log('Promise run');
-        postMessage('Greeting from Promise');
-    })
-    
-    for (let i = 0; i < 1001; i++) {
-        if (i === 1000) {
-            console.log('Loop run');
-            postMessage('Greeting from Loop');
-        }
+  self.close(); // 关闭 worker
+
+  setTimeout(() => {
+    console.log('setTimeout run');
+    postMessage('Greeting from SetTimeout');
+  });
+
+  Promise.resolve().then(() => {
+    console.log('Promise run');
+    postMessage('Greeting from Promise');
+  });
+
+  for (let i = 0; i < 1001; i++) {
+    if (i === 1000) {
+      console.log('Loop run');
+      postMessage('Greeting from Loop');
     }
-    
+  }
 });
 ```
 
 运行结果如下：
 
-
-
-![img](https://static.ecool.fun//article/b840c22c-a783-47f6-b2ab-39f80c6a2082.awebp)
+![img](./img/webwork2.png)
 
 与在主线程关闭不同的是，worker 线程当前的 Event Loop 任务队列中的 `postMessage()` 事件都会被主线程监听到。
 
-### 2.5 Worker 线程引用其他js文件
+### 2.5 Worker 线程引用其他 js 文件
 
-总有一些场景，需要放到 worker 进程去处理的任务很复杂，需要大量的处理逻辑，我们当然不想把所有代码都塞到 `worker.js` 里，那样就太糟糕了。不出意料，web worker 为我们提供了解决方案，我们可以在 worker 线程中利用 `importScripts()` 方法加载我们需要的js文件，而且，通过此方法加载的js文件**不受同源策略约束**！
+总有一些场景，需要放到 worker 进程去处理的任务很复杂，需要大量的处理逻辑，我们当然不想把所有代码都塞到 `worker.js` 里，那样就太糟糕了。不出意料，web worker 为我们提供了解决方案，我们可以在 worker 线程中利用 `importScripts()` 方法加载我们需要的 js 文件，而且，通过此方法加载的 js 文件**不受同源策略约束**！
 
 ```js
 // utils.js
 const add = (a, b) => a + b;
 // worker.js（worker线程）
-// 使用方法：importScripts(path1, path2, ...); 
+// 使用方法：importScripts(path1, path2, ...);
 
 importScripts('./utils.js');
 
@@ -254,7 +248,7 @@ console.log(add(1, 2)); // log 3
 
 ### 2.6 ESModule 模式
 
-还有一些场景，当你开启一个新项目，正高兴的用 `importScripts()` 导入js文件时发现， `importScripts()` 方法执行失败。仔细一看，原来是新项目的 js 文件都用的是 ESModule 模式。难道要把引用到的文件都改一遍吗？当然不用，还记得上文提到初始化 worker 时的第二个可选参数吗，我们可以直接使用 module 模式初始化 worker 线程！
+还有一些场景，当你开启一个新项目，正高兴的用 `importScripts()` 导入 js 文件时发现， `importScripts()` 方法执行失败。仔细一看，原来是新项目的 js 文件都用的是 ESModule 模式。难道要把引用到的文件都改一遍吗？当然不用，还记得上文提到初始化 worker 时的第二个可选参数吗，我们可以直接使用 module 模式初始化 worker 线程！
 
 ```js
 // main.js（主线程）
@@ -266,7 +260,7 @@ export default add = (a, b) => a + b;
 // worker.js（worker线程）
 import add from './utils.js'; // 导入外部js
 
-self.addEventListener('message', e => { 
+self.addEventListener('message', e => {
     postMessage(e.data);
 });
 
@@ -303,31 +297,29 @@ myWorker.postMessage(fun); // Error：Failed to execute 'postMessage' on 'Worker
 
 结构化克隆算法**支持**的数据类型：
 
-| 类型                                                         | 说明                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [所有的原始类型](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures#原始值) | symbols 除外                                                 |
-| [Boolean](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Boolean) 对象 |                                                              |
-| String 对象                                                  |                                                              |
-| [Date](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date) |                                                              |
-| [RegExp](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp) | `lastIndex` 字段不会被保留。                                 |
-| [`Blob`](https://developer.mozilla.org/zh-CN/docs/Web/API/Blob) |                                                              |
-| [`File`](https://developer.mozilla.org/zh-CN/docs/Web/API/File) |                                                              |
-| [`FileList`](https://developer.mozilla.org/zh-CN/docs/Web/API/FileList) |                                                              |
-| [ArrayBuffer](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) |                                                              |
+| 类型                                                                                                           | 说明                                                                                                                         |
+| -------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| [所有的原始类型](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures#原始值)               | symbols 除外                                                                                                                 |
+| [Boolean](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Boolean) 对象       |                                                                                                                              |
+| String 对象                                                                                                    |                                                                                                                              |
+| [Date](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date)                  |                                                                                                                              |
+| [RegExp](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp)              | `lastIndex` 字段不会被保留。                                                                                                 |
+| [`Blob`](https://developer.mozilla.org/zh-CN/docs/Web/API/Blob)                                                |                                                                                                                              |
+| [`File`](https://developer.mozilla.org/zh-CN/docs/Web/API/File)                                                |                                                                                                                              |
+| [`FileList`](https://developer.mozilla.org/zh-CN/docs/Web/API/FileList)                                        |                                                                                                                              |
+| [ArrayBuffer](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)    |                                                                                                                              |
 | [ArrayBufferView](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) | 这基本上意味着所有的 [类型化数组](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Typed_arrays) ，如 Int32Array 等。 |
-| [`ImageData`](https://developer.mozilla.org/zh-CN/docs/Web/API/ImageData) |                                                              |
-| [Array](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array) |                                                              |
-| [Object](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object) | 仅包括普通对象（如对象字面量）                               |
-| [Map](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map) |                                                              |
-| [Set](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set) |                                                              |
+| [`ImageData`](https://developer.mozilla.org/zh-CN/docs/Web/API/ImageData)                                      |                                                                                                                              |
+| [Array](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array)                |                                                                                                                              |
+| [Object](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object)              | 仅包括普通对象（如对象字面量）                                                                                               |
+| [Map](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map)                    |                                                                                                                              |
+| [Set](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set)                    |                                                                                                                              |
 
 ## 3.SharedWorker
 
 **SharedWorker** 是一种特殊类型的 Worker，可以被多个浏览上下文访问，比如多个 windows，iframes 和 workers，但这些浏览上下文必须同源。它们实现于一个不同于普通 worker 的接口，具有不同的全局作用域：[`SharedWorkerGlobalScope`](https://developer.mozilla.org/en-US/docs/Web/API/SharedWorkerGlobalScope) ，但是继承自[`WorkerGlobalScope`](https://developer.mozilla.org/en-US/docs/Web/API/SharedWorkerGlobalScope#properties_inherited_from_workerglobalscope)
 
-
-
-![img](https://static.ecool.fun//article/90ea2a5b-9097-428a-900a-168a4fd77c99.awebp)
+![img](./img/webwork3.png)
 
 `SharedWorker` 线程的创建和使用跟 `worker` 类似，事件和方法也基本一样。 不同点在于，主线程与 `SharedWorker` 线程是通过[`MessagePort`](https://developer.mozilla.org/en-US/docs/Web/API/MessagePort)建立起链接，数据通讯方法都挂载在`SharedWorker.port`上。
 
@@ -339,9 +331,9 @@ const myWorker = new SharedWorker('./sharedWorker.js');
 
 myWorker.port.start(); // 开启端口
 
-myWorker.port.addEventListener('message', msg => {
-    console.log(msg.data);
-})
+myWorker.port.addEventListener('message', (msg) => {
+  console.log(msg.data);
+});
 ```
 
 但是，如果采用 `onmessage` 方法，则默认开启端口，不需要再手动调用`SharedWorker.port.start()`方法
@@ -350,8 +342,8 @@ myWorker.port.addEventListener('message', msg => {
 // main.js（主线程）
 const myWorker = new SharedWorker('./sharedWorker.js');
 
-myWorker.port.onmessage = msg => {
-    console.log(msg.data);
+myWorker.port.onmessage = (msg) => {
+  console.log(msg.data);
 };
 ```
 
@@ -361,7 +353,7 @@ myWorker.port.onmessage = msg => {
 
 ### 一个利用`SharedWorker`实现多页面数据共享的例子
 
-1. index 页面的 add 按钮，每点击一次，向 sharedWorker 发送一次 add 数据，页面 count 增加1
+1. index 页面的 add 按钮，每点击一次，向 sharedWorker 发送一次 add 数据，页面 count 增加 1
 
 ```js
 // index.html
@@ -384,9 +376,9 @@ myWorker.port.onmessage = msg => {
         if (!!window.SharedWorker) {
             const container = document.getElementById('container');
             const add = document.getElementById('add');
-            
+
             const myWorker = new SharedWorker('./sharedWorker.js');
-            
+
             myWorker.port.start();
 
             myWorker.port.addEventListener('message', msg => {
@@ -401,7 +393,7 @@ myWorker.port.onmessage = msg => {
 </html>
 ```
 
-1. iframe 页面的 reduce 按钮，每点击一次，向 sharedWorker 发送一次 reduce 数据，页面count 减少1
+1. iframe 页面的 reduce 按钮，每点击一次，向 sharedWorker 发送一次 reduce 数据，页面 count 减少 1
 
 ```js
 // iframe.html
@@ -425,7 +417,7 @@ myWorker.port.onmessage = msg => {
             const myWorker = new SharedWorker('./sharedWorker.js');
 
             myWorker.port.start();
-            
+
             myWorker.port.addEventListener('message', msg => {
                 container.innerText = msg.data;
             })
@@ -446,23 +438,22 @@ myWorker.port.onmessage = msg => {
 let num = 0;
 const workerList = [];
 
-self.addEventListener('connect', e => {
-    const port = e.ports[0];
-    port.addEventListener('message', e => {
-        num += e.data === 'add' ? 1 : -1;
-        workerList.forEach(port => { // 遍历所有已连接的part，发送消息
-            port.postMessage(num);
-        })
+self.addEventListener('connect', (e) => {
+  const port = e.ports[0];
+  port.addEventListener('message', (e) => {
+    num += e.data === 'add' ? 1 : -1;
+    workerList.forEach((port) => {
+      // 遍历所有已连接的part，发送消息
+      port.postMessage(num);
     });
-    port.start();
-    workerList.push(port); // 存储已连接的part
-    port.postMessage(num); // 初始化
+  });
+  port.start();
+  workerList.push(port); // 存储已连接的part
+  port.postMessage(num); // 初始化
 });
 ```
 
 结果可以发现，index 页面和 iframe 页面的 count 始终保持一致，实现了多个页面数据同步。
-
-
 
 ![img](https://static.ecool.fun//article/2443b141-dcbe-43f9-bf4b-4c5f564782da.awebp)
 
@@ -470,10 +461,6 @@ self.addEventListener('connect', e => {
 
 在 `sharedWorker` 线程里使用 `console` 打印信息，不会出现在主线程的的控制台中。如果你想调试 `sharedWorker`，需要在 Chrome 浏览器输入 chrome://inspect/ ，这里能看到所有正在运行的 `sharedWorker`，然后开启一个独立的 dev-tool 面板。
 
-
-
-![img](https://static.ecool.fun//article/a5e4ea01-34eb-48d6-b2de-428870ff179a.awebp)
-
 ## 结束语
 
-其实，除了 `worker` 和 `sharedWorker` 外，还有 `ServiceWorker`。它一般作为 Web 应用程序、浏览器和网络之间的代理服务，旨在创建有效的离线体验，拦截网络请求，并基于网络是否可用以及更新的资源是否驻留在服务器上来采取适当的动作。使用方法本文不作详细介绍，有兴趣可自行查看 [ServiceWorker](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker)
+其实，除了 `worker` 和 `sharedWorker` 外，还有 `ServiceWorker`。它一般作为 Web 应用程序、浏览器和网络之间的代理服务，旨在创建有效的离线体验，拦截网络请求，并基于网络是否可用以及更新的资源是否驻留在服务器上来采取适当的动作。使用方法本文不作详细介绍，有兴趣可自行查看 [ServiceWorker](./img/webwork4.png)
