@@ -5,7 +5,7 @@ theme: solarized-dark
 
 ## 1.介绍
 
-1. nodejs 并不是`JavaScript`应用，也不是编程语言，因为编程语言使用的`JavaScript`,Nodejs 是 `JavaScript`的运行时。
+1. nodejs 并不是`JavaScript`应用，也不是编程语言，因为编程语言使用的`JavaScript`,Nodejs 是 `JavaScript`的运行时
 2. Nodejs 是构建在 V8 引擎之上的，V8 引擎是由 C/C++编写的，因此我们的 JavaSCript 代码需要由 C/C++转化后再执行
 
 3. NodeJs 使用异步 I/O 和事件驱动的设计理念，可以高效地处理大量并发请求，提供了非阻塞式 I/O 接口和事件循环机制，使得开发人员可以编写高性能、可扩展的应用程序,异步 I/O 最终都是由`libuv` 事件循环库去实现的。
